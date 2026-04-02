@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* --- ANIMASI HUJAN KILAU --- */
+@keyframes fall {
+  0% { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9); }
+}
+
+.magic-rain {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  /* Menjalankan 2 animasi sekaligus */
+  animation: fall linear infinite, blink ease-in-out infinite;
+}
+
+/* Animasi untuk layar pembuka saat keluar */
+@keyframes exit-opening {
+  0% { opacity: 1; transform: scale(1); filter: blur(0); }
+  100% { opacity: 0; transform: scale(1.1); filter: blur(10px); }
+}
+
+/* Animasi untuk konten utama saat masuk */
+@keyframes enter-content {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-exit {
+  animation: exit-opening 1.2s ease-in-out forwards;
+}
+
+.animate-enter {
+  animation: enter-content 1.5s ease-out forwards;
+}
+
+/* --- ANIMASI TRANSISI UNDANGAN --- */
+
+/* Animasi untuk Layar Pembuka saat diklik (Zoom Out + Fade Out + Blur) */
+@keyframes exit-opening {
+  0% { 
+    opacity: 1; 
+    transform: scale(1); 
+    filter: blur(0); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(1.1); 
+    filter: blur(15px); 
+  }
+}
+
+/* Animasi untuk Isi Undangan saat muncul (Fade In + Scale Up) */
+@keyframes enter-content {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.9); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+.animate-exit {
+  animation: exit-opening 1.2s ease-in-out forwards;
+}
+
+.animate-enter {
+  animation: enter-content 1.5s ease-out forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 1s ease-in forwards;
+}
