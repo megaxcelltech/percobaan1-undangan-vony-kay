@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react"; // Tambahkan Suspense di sini
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen">
       
-      {/* --- BACKGROUND GLOBAL (REVISI DI SINI) --- */}
+      {/* --- BACKGROUND GLOBAL --- */}
       <div className="fixed inset-0 w-full h-full -z-50 pointer-events-none">
         <Image 
           src="/images/gal3.jpg" 
@@ -67,7 +67,7 @@ export default function Home() {
           fill
           priority
           className="object-cover object-center brightness-[0.3]"
-          sizes="100vw" // <--- Perbaikan: Menghilangkan warning "fill" but missing "sizes"
+          sizes="100vw"
           unoptimized 
         />
         <div className="absolute inset-0 bg-black/20" />
@@ -75,10 +75,12 @@ export default function Home() {
       
       <AudioPlayer audioRef={audioRef} isVisible={stage === "main"} />
 
-      {/* --- LAYER 1: OPENING --- */}
+      {/* --- LAYER 1: OPENING (REVISI: Dibungkus Suspense) --- */}
       {stage === "cover" && (
         <div className="fixed inset-0 z-[100]">
-          <Opening onOpen={handleOpenInvitation} />
+          <Suspense fallback={<div className="fixed inset-0 bg-zinc-900" />}>
+            <Opening onOpen={handleOpenInvitation} />
+          </Suspense>
         </div>
       )}
 

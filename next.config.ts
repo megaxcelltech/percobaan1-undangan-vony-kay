@@ -1,12 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Mengabaikan error TypeScript saat build
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, // Abaikan error TS biar cepet tayang
   },
-  // Mengabaikan error ESLint (seperti warning gambar) saat build
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // Abaikan warning gambar/linting
   },
 };
 
